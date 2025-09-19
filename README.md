@@ -48,8 +48,9 @@ remote_editing/
     dotfiles.sh
   nvim/                   # Neovim config
   tmux.conf               # Tmux config
-  bashrc.d/
+  bashrc/
     aliases.sh            # Aliases + EDITOR settings
+    utils.sh
 ````
 
 ## What you get?
