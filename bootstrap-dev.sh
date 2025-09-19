@@ -20,6 +20,7 @@ for arg in "$@"; do
     --no-neovim)   WITH_NEOVIM=0 ;;
     --no-python)   WITH_PYTHON=0 ;;
     --no-dotfiles) WITH_DOTFILES=0 ;;
+    --ssh-only)    WITH_GENERAL=0; WITH_NEOVIM=0; WITH_PYTHON=0; WITH_DOTFILES=0; SSH_ONLY=1 ;;
     --help)
       echo "Usage: $0 [options]"
       echo ""
@@ -28,6 +29,7 @@ for arg in "$@"; do
       echo "  --no-neovim    Skip Neovim config + plugins"
       echo "  --no-python    Skip Python/uv setup"
       echo "  --no-dotfiles  Skip tmux + bash aliases setup"
+      echo "  --ssh-only     Only generate an SSH key (skips everything else)"
       echo "  --help         Show this help message"
       exit 0
       ;;
@@ -35,6 +37,7 @@ for arg in "$@"; do
 done
 
 [ "$WITH_GENERAL"  -eq 1 ] && bootstrap_general
+[ "${SSH_ONLY:-0}" -eq 1 ] && setup_ssh && exit 0
 [ "$WITH_NEOVIM"   -eq 1 ] && bootstrap_neovim
 [ "$WITH_PYTHON"   -eq 1 ] && bootstrap_python
 [ "$WITH_DOTFILES" -eq 1 ] && bootstrap_dotfiles

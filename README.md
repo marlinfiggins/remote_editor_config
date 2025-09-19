@@ -16,7 +16,13 @@ Clone this repo and run the bootstrap script. It will set up:
 
 ```bash
 git clone https://github.com/marlinfiggins/remote_editing.git ~/remote_editing
-bash ~/remote_editing/bootstrap-dev.sh
+cd ~/remote_editing
+
+# Optional: set your Git identity for commits and SSH
+export GIT_NAME="Your Name"
+export GIT_EMAIL="you@example.com"
+
+bash bootstrap-dev.sh
 ```
 
 ### Options
@@ -25,6 +31,7 @@ bash ~/remote_editing/bootstrap-dev.sh
 ./bootstrap-dev.sh --no-neovim    # Skip Neovim setup
 ./bootstrap-dev.sh --no-python    # Skip Python setup
 ./bootstrap-dev.sh --no-dotfiles  # Skip tmux + aliases
+./bootstrap-dev.sh --ssh-only     # Only generate an SSH key
 ```
 
 
@@ -63,11 +70,16 @@ Here’s a workflow section you can drop straight into your README:
 sudo apt update && sudo apt upgrade -y    # (Debian/Ubuntu example)
 ```
 
-2. Clone this repo
+2. Clone this repo and (optionally) set info
 
 ```bash
 git clone https://github.com/marlinfiggins/remote_editing.git ~/remote_editing
 cd ~/remote_editing
+```
+
+```bash
+export GIT_NAME="Your Name"
+export GIT_EMAIL="you@example.com"
 ```
 
 3. Run the bootstrap

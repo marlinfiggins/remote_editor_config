@@ -2,8 +2,15 @@
 . "$(dirname "$0")/common.sh"
 
 configure_git_identity() {
-  local name="${GIT_NAME:-Marlin Figgins}"
-  local email="${GIT_EMAIL:-marlinfiggins@gmail.com}"
+
+  if [ -z "${GIT_NAME:-}" ] || [ -z "${GIT_EMAIL:-}" ]; then
+    warn "GIT_NAME and GIT_EMAIL not set. Skipping git identity config."
+    warn "  Run with: GIT_NAME='Your Name' GIT_EMAIL='you@example.com' ./bootstrap-dev.sh"
+    return
+  fi
+
+  local name="${GIT_NAME}"
+  local email="${GIT_EMAIL}"
 
   local cur_name
   local cur_email
@@ -22,9 +29,15 @@ configure_git_identity() {
 
 setup_ssh() {
   if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
-    info "Generating SSH key..."
+    if [ -z "${GIT_EMAIL:-}" ]; then
+      warn "GIT_EMAIL not set. Skipping SSH key generation."
+      warn "👉 Run with: GIT_EMAIL='you@example.com' ./bootstrap-dev.sh"
+      return
+    fi
+
+    info "Generating SSH key with email → $GIT_EMAIL"
     mkdir -p ~/.ssh && chmod 700 ~/.ssh
-    ssh-keygen -t ed25519 -C "${GIT_EMAIL:-marlinfiggins@gmail.com}" -f "$HOME/.ssh/id_ed25519" -N ""
+    ssh-keygen -t ed25519 -C "$GIT_EMAIL" -f "$HOME/.ssh/id_ed25519" -N ""
     cat ~/.ssh/id_ed25519.pub
     info "Add this SSH key to GitHub → Settings → SSH and GPG keys"
     echo "After adding the key, test with: ssh -T git@github.com"
