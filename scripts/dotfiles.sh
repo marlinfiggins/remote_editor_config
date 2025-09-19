@@ -54,9 +54,17 @@ link_bash_aliases() {
   fi
 }
 
+# Symlink Vim config
+link_vimrc() {
+  mkdir -p "$HOME/.vim"
+  ln -sf "$REPO_DIR/vim/.vimrc" "$HOME/.vimrc"
+  info "Linked Vim config → ~/.vimrc"
+}
+
 bootstrap_dotfiles() {
   install_tmux
   link_tmux_conf
   link_bash_aliases
+  link_vimrc
   info "Dotfiles bootstrap complete"
 }
