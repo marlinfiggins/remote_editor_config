@@ -26,6 +26,7 @@ configure_git_identity() {
     git config --global user.email "$email"
     info "Set git user.email → $email"
   fi
+}
 
 setup_ssh() {
   if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
