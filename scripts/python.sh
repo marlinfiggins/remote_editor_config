@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-. "$(dirname "$0")/common.sh"
+. "$(dirname "${BASH_SOURCE[0]}")/common.sh"
 
 install_uv() {
   if ! has uv; then
