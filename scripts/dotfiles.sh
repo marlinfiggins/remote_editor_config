@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 . "$(dirname "${BASH_SOURCE[0]}")/common.sh"
 
-REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+SCRIPT_DIR="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+REPO_ROOT="$(cd -- "$SCRIPT_DIR/.." >/dev/null 2>&1 && pwd)"
 
 install_tmux() {
   install_pkgs tmux
@@ -57,7 +58,7 @@ link_bash_aliases() {
 # Symlink Vim config
 link_vimrc() {
   mkdir -p "$HOME/.vim"
-  ln -sf "$REPO_DIR/vim/.vimrc" "$HOME/.vimrc"
+  ln -sf "$REPO_ROOT/vim/.vimrc" "$HOME/.vimrc"
   info "Linked Vim config → ~/.vimrc"
 }
 
