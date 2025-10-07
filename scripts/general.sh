@@ -48,7 +48,8 @@ setup_ssh() {
 }
 
 bootstrap_general() {
-  install_pkgs git curl build-essential ripgrep fd-find lazygit
+  install_pkgs git curl build-essential ripgrep fd-find
+  instrall_pkgs lazygit || true
   configure_git_identity
   setup_ssh
   info "General dev tools bootstrap complete"
