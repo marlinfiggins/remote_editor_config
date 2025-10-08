@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SCRIPTS_DIR="$(dirname "$0")/scripts"
+SCRIPTS_DIR="$(cd -- "$(dirname "${BASH_SOURCE[0]}")/scripts" >/dev/null 2>&1 && pwd)"
 
 . "$SCRIPTS_DIR/common.sh"
 . "$SCRIPTS_DIR/general.sh"
