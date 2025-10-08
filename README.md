@@ -15,7 +15,7 @@ Clone this repo and run the bootstrap script. It will set up:
 ### Install
 
 ```bash
-git clone https://github.com/marlinfiggins/remote_editing.git ~/remote_editing
+git clone https://github.com/marlinfiggins/remote_editor_config.git
 cd ~/remote_editing
 
 # Optional: set your Git identity for commits and SSH
