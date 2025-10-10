@@ -2,7 +2,8 @@
 . "$(dirname "${BASH_SOURCE[0]}")/common.sh"
 
 # Assume repo root is where this script lives, one level up
-REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+SCRIPT_DIR="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+REPO_ROOT="$(cd -- "$SCRIPT_DIR/.." >/dev/null 2>&1 && pwd)"
 NVIM_SOURCE="$REPO_ROOT/nvim"
 NVIM_CONFIG_DIR="$HOME/.config/nvim"
 LAZY_DIR="$HOME/.local/share/nvim/lazy/lazy.nvim"
